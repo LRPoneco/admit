@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册</title>
+    <link type="text/css" rel="stylesheet" href="css/zhuce.css" />
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/com.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+<div class="main" align="center">
+    <form action="" id="register" enctype="balls/addball_form" method="post">
+        <table class="txt">
+            <tr>
+                <td>请输入电话号码</td>
+                <td><input class="txtphone" type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <td>请输入姓名</td>
+                <td><input class="txtphone" type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>请输入邮箱</td>
+                <td><input class="txtphone" type="text" name="Mail"></td>
+            </tr>
+            <tr>
+                <td>请输入密码</td>
+                <td><input type="password" class="txtphone" name="password"></td>
+            </tr>
+            <tr>
+                <td>请选择性别</td>
+                <td>
+                    <select class="txtphone" name="sex">
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>请选择当前状态</td>
+                <td>
+                    <select name="state" class="txtphone">
+                        <option value="就职">就职</option>
+                        <option value="申请就职">申请就职</option>
+                        <option value="其它">其它</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>请选择就职岗位类别</td>
+                <td>
+                    <select name="rank" id="select" class="txtphone">
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center" rowspan="2"><input type="submit" class="txtphone" onclick="register()" value="注册"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script type="text/javascript">
+    window.onload = function (){
+        requestdata();
+    }
+    function requestdata(){
+        var page0 = 1;
+        $.ajax({
+            //请求路径
+            url: getRank,
+            //请求类型
+            type: "POST",
+            data:"{'page':'"+page0+"','pagesize':'100'}",
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                for(var i=0;i<data.length;i++){
+                    var option =document.createElement("option");
+                    option.value = data[i].rank;
+                    option.innerText = data[i].rank;
+                    document.getElementById("select").appendChild(option);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{margin:0px;padding: 0px;background-image: url("../imageFile/img_2.png")}
+    .scroll{width: 700px;height:600px;border: 0.2px #31acfb solid;border-radius: 5px;background: #ffffff }
+    .left{float:left;width: 199px;height: 100%;border-right: #cccccc 1px solid}
+    .xb{width: 90px;height: 30px;background: #31acfb;text-align: center}
+    .xb td:hover{cursor:hand;margin: 0px;padding: 0px}
+    .right-top{float:top;width:100%;height: 500px;padding: 0px;margin: 0px;border-bottom: #31acfb 1px solid;}
+    .rightbootom{float: bottom;}
+</style>
+<body align="center">
+<div align="center" style="padding-top:30px;">
+    <div class="scroll">
+        <div class="left">
+            <table>
+                <tr>
+                    <td class="xb">分组</td>
+                    <td class="xb">信息</td>
+                </tr>
+            </table>
+        </div>
+        <div style="float: right ;margin:0px;padding:0px;width: 500px;height: 100%;">
+            <div class="right-top">
+
+            </div>
+            <div class="rightbootom">
+                <table>
+                    <tr>
+                        <td><textarea style="width: 398px;height: 90px;border: none;padding: 0px;margin: 0px"></textarea></td>
+                        <td>
+                            <input style="width: 93px;height: auto" type="button" value="发送">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script>
+    window.onload = function (){
+        requestdata();
+    }
+    function get(){
+        $.ajax({
+            //请求路径
+            url: getinformation,
+            //请求类型
+            type: "POST",
+            data:"{'page':'1','pagesize':'15'}",//["page:"+1+"&pagesize:15"],
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                writ(data)
+            }
+        });
+    }
+    function send(){
+        $.ajax({
+            //请求路径
+            url: sendinformation,
+            //请求类型
+            type: "POST",
+            data:"{'page':'1','pagesize':'15'}",//["page:"+1+"&pagesize:15"],
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                writ(data)
+            }
+        });
+    }
+    function writ(data){
+        document.getElementById("information").innerText= data[0].counts;
+    }
+</script>
+</html>

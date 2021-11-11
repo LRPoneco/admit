@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<style>
+    .tableRank{border-collapse: collapse;margin-top: 40px}
+    .tableRank td{border: 0px solid #cccccc;align-self: center;width: 100px;height: 20px;padding-top: 20px;}
+    .text{width:200px;height: 30px;border:none;border-bottom: 1px solid #cccccc;}
+</style>
+<script type="text/javascript" src="js/com.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<body>
+<table class="tableRank" align="center">
+    <tr>
+        <td>工号</td>
+        <td><input id="admitID" class="text"></td>
+    </tr>
+    <tr>
+        <td>电话</td>
+        <td><input id="phone" class="text"></td>
+    </tr>
+    <tr>
+        <td>邮箱</td>
+        <td><input id="Mail" class="text"></td>
+    </tr>
+    <tr>
+        <td>姓名</td>
+        <td><input id="name" class="text"></td>
+    </tr>
+    <tr>
+        <td>密码</td>
+        <td><input id="password" class="text"></td>
+    </tr>
+    <tr>
+        <td>性别</td>
+        <td><input id="sex" class="text"></td>
+    </tr>
+    <tr>
+        <td>职位</td>
+        <td><input id="rank" class="text"></td>
+    </tr>
+    <tr>
+        <td>状态</td>
+        <td><input id="state" class="text"></td>
+    </tr>
+    <tr>
+        <td>入职时间</td>
+        <td><input id="starttime" class="text"></td>
+    </tr>
+</table>
+<script>
+    window.onload = function (){
+        requestdata();
+    }
+    function requestdata(){
+        $.ajax({
+            //请求路径
+            url: admitinformation,
+            //请求类型
+            type: "POST",
+            data:"{'page':'1','pagesize':'15'}",//["page:"+1+"&pagesize:15"],
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                writ(data)
+            }
+        });
+    }
+    function writ(data){
+        document.getElementById("admitID").value = data[0].admitID;
+        document.getElementById("phone").value = data[0].phone;
+        document.getElementById("Mail").value = data[0].Mail;
+        document.getElementById("name").value = data[0].name;
+        document.getElementById("password").value = data[0].password;
+        document.getElementById("sex").value = data[0].sex;
+        document.getElementById("rank").value = data[0].rank;
+        document.getElementById("state").value = data[0].state;
+        document.getElementById("starttime").value = data[0].starttime;
+    }
+</script>
+</body>
+</html>

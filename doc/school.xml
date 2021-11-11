@@ -1,0 +1,26 @@
+<SQL>
+    <!--登陆SQL方法-->
+    <Login>select * from admit where password={password} and if( admitID={id} or phone={id} or Mail={id} ,'yes','no')='yes'</Login>
+    <!--注册实现方法类-->
+    <Register>{?admitID} insert into admit(admitID,password,Mail,name,phone,sex,rank,state,starttime) values({autoID$5} ,{password} ,{Mail} ,{name} ,{phone} ,{sex} ,{rank} ,{state} ,{autoTime} )</Register>
+    <!--学生修改密码-->
+    <StuResive>{?admitID} update t_student set stupassword={stupassword} where if( stuno!={stuno})='yes' and admitID={session$stuno}</StuResive>
+    <!--获取当前登陆学生的学号-->
+    <getSession>{?admitID} {session$stuno}</getSession>
+    <search>{?admitID} select * from t_student where stuno like {stuno%} or stuname like {stuno%}</search>
+    <addRank>{?admitID} insert into ranks(rank,ranknumber) values({rank} ,{ranknumber} )</addRank>
+    <deleteRank>{?admitID} delete from ranks where rank={rank}</deleteRank>
+    <resivateRank>{?admitID} update ranks set rank={rank} ,ranknumber={ranknumber} where rank={rankID}</resivateRank>
+    <getRank>{?admitID} select * from ranks </getRank>
+    <admitLook>{?admitID} select * from admit</admitLook>
+    <deleteadmit>{超级管理员@rank} {?admitID} delete from admit where admitID={admitID}</deleteadmit>
+    <!--管理员对当前职员信息进行修改-->
+    <admitResivate>{超级管理员@rank} {?admitID} update admit set phone={phone} ,Mail={Mail} ,name={name} ,password={password} ,sex={sex} ,rank={rank} ,state={state} ,starttime={starttime} where admitID={admitID}</admitResivate>
+    <!--获取当前登陆者的相关信息-->
+    <admitinformation>{?admitID} select * from admit where admitID={session$admitID}</admitinformation>
+    <!--获取当前登录者未读信息数量-->
+    <informationcount>select count(*) from information where state='1' and accentID={session$admitID}</informationcount>
+    <getinformation>select count(*) from information where state='1' and accentID={session$admitID} and sendID={admitID}</getinformation>
+    <!--请假审批-->
+    <admitqj>{?admitID} update qi set spadmitID={session$admitID} where admitID={admitID} and if( starttime={starttime} and endtime={endtime} ,'yes','no')='yes'</admitqj>
+</SQL>

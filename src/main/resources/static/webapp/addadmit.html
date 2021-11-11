@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .tableRank{border-collapse: collapse;}
+    .tableRank td{border: 0.5px solid #cccccc;align-self: center;width: 100px;height: 20px;}
+    .buttondel{width: 100px;height: 30px;background:#009fe9;border: none;}
+    .buttondel:hover{cursor:hand;background: #31acfb}
+    .buttondel1{width: 100px;height: 30px;background:none;border: none;}
+    .text{width:120px;height: 30px;border: none;text-align: center}
+    .buttondel ,.buttondel1,.text{font-size: 8px;color: #cccccc}
+</style>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/com.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<body>
+<table class="tableRank" align="center">
+    <tr>
+        <td><input value="工号" class="text"></td>
+        <td><input value="电话" class="text"></td>
+        <td><input value="邮箱" class="text"></td>
+        <td><input value="姓名" class="text"></td>
+        <td><input value="密码" class="text"></td>
+        <td><input value="性别" class="text"></td>
+        <td><input value="职位" class="text"></td>
+        <td><input value="状态" class="text"></td>
+        <td><input value="入职时间" class="text"></td>
+        <td><input type="submit" value="删除" class="buttondel1"></td>
+        <td><input type="submit" value="修改" class="buttondel1"></td>
+    </tr>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form0">
+        <tr id="tr0" style="display: none">
+            <td><input type="text" name="admitID" id="admitID0" class="text"></td>
+            <td><input type="text" name="phone" id="phone0" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail0" class="text"></td>
+            <td><input type="text" name="name" id="name0" class="text"></td>
+            <td><input type="text" name="password" id="password0" class="text"></td>
+            <td><input type="text" name="sex" id="sex0" class="text"></td>
+            <td><input type="text" name="rank" id="rank0" class="text"></td>
+            <td><input type="text" name="state" id="state0" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime0" class="text"></td>
+            <td><input type="submit" onclick="del('form0')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form0')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form1">
+        <tr id="tr1" style="display: none">
+            <td><input type="text" name="admitID" id="admitID1" class="text"></td>
+            <td><input type="text" name="phone" id="phone1" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail1" class="text"></td>
+            <td><input type="text" name="name" id="name1" class="text"></td>
+            <td><input type="text" name="password" id="password1" class="text"></td>
+            <td><input type="text" name="sex" id="sex1" class="text"></td>
+            <td><input type="text" name="rank" id="rank1" class="text"></td>
+            <td><input type="text" name="state" id="state1" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime1" class="text"></td>
+            <td><input type="submit" onclick="del('form1')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form1')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form2">
+        <tr id="tr2" style="display: none">
+            <td><input type="text" name="admitID" id="admitID2" class="text"></td>
+            <td><input type="text" name="phone" id="phone2" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail2" class="text"></td>
+            <td><input type="text" name="name" id="name2" class="text"></td>
+            <td><input type="text" name="password" id="password2" class="text"></td>
+            <td><input type="text" name="sex" id="sex2" class="text"></td>
+            <td><input type="text" name="rank" id="rank2" class="text"></td>
+            <td><input type="text" name="state" id="state2" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime2" class="text"></td>
+            <td><input type="submit" onclick="del('form2')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form2')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form3">
+        <tr id="tr3" style="display: none">
+            <td><input type="text" name="admitID" id="admitID3" class="text"></td>
+            <td><input type="text" name="phone" id="phone3" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail3" class="text"></td>
+            <td><input type="text" name="name" id="name3" class="text"></td>
+            <td><input type="text" name="password" id="password3" class="text"></td>
+            <td><input type="text" name="sex" id="sex3" class="text"></td>
+            <td><input type="text" name="rank" id="rank3" class="text"></td>
+            <td><input type="text" name="state" id="state3" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime3" class="text"></td>
+            <td><input type="submit" onclick="del('form3')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form3')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form4">
+        <tr id="tr4" style="display: none">
+            <td><input type="text" name="admitID" id="admitID4" class="text"></td>
+            <td><input type="text" name="phone" id="phone4" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail4" class="text"></td>
+            <td><input type="text" name="name" id="name4" class="text"></td>
+            <td><input type="text" name="password" id="password4" class="text"></td>
+            <td><input type="text" name="sex" id="sex4" class="text"></td>
+            <td><input type="text" name="rank" id="rank4" class="text"></td>
+            <td><input type="text" name="state" id="state4" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime4" class="text"></td>
+            <td><input type="submit" onclick="del('form4')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form4')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form5">
+        <tr id="tr5" style="display: none">
+            <td><input type="text" name="admitID" id="admitID5" class="text"></td>
+            <td><input type="text" name="phone" id="phone5" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail5" class="text"></td>
+            <td><input type="text" name="name" id="name5" class="text"></td>
+            <td><input type="text" name="password" id="password5" class="text"></td>
+            <td><input type="text" name="sex" id="sex5" class="text"></td>
+            <td><input type="text" name="rank" id="rank5" class="text"></td>
+            <td><input type="text" name="state" id="state5" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime5" class="text"></td>
+            <td><input type="submit" onclick="del('form5')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form5')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form6">
+        <tr id="tr6" style="display: none">
+            <td><input type="text" name="admitID" id="admitID6" class="text"></td>
+            <td><input type="text" name="phone" id="phone6" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail6" class="text"></td>
+            <td><input type="text" name="name" id="name6" class="text"></td>
+            <td><input type="text" name="password" id="password6" class="text"></td>
+            <td><input type="text" name="sex" id="sex6" class="text"></td>
+            <td><input type="text" name="rank" id="rank6" class="text"></td>
+            <td><input type="text" name="state" id="state6" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime6" class="text"></td>
+            <td><input type="submit" onclick="del('form6')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form6')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form7">
+        <tr id="tr7" style="display: none">
+            <td><input type="text" name="admitID" id="admitID7" class="text"></td>
+            <td><input type="text" name="phone" id="phone7" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail7" class="text"></td>
+            <td><input type="text" name="name" id="name7" class="text"></td>
+            <td><input type="text" name="password" id="password7" class="text"></td>
+            <td><input type="text" name="sex" id="sex7" class="text"></td>
+            <td><input type="text" name="rank" id="rank7" class="text"></td>
+            <td><input type="text" name="state" id="state7" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime7" class="text"></td>
+            <td><input type="submit" onclick="del('form7')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form7')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form8">
+        <tr id="tr8" style="display: none">
+            <td><input type="text" name="admitID" id="admitID8" class="text"></td>
+            <td><input type="text" name="phone" id="phone8" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail8" class="text"></td>
+            <td><input type="text" name="name" id="name8" class="text"></td>
+            <td><input type="text" name="password" id="password8" class="text"></td>
+            <td><input type="text" name="sex" id="sex8" class="text"></td>
+            <td><input type="text" name="rank" id="rank8" class="text"></td>
+            <td><input type="text" name="state" id="state8" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime8" class="text"></td>
+            <td><input type="submit" onclick="del('form8')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form8')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form9">
+        <tr id="tr9" style="display: none">
+            <td><input type="text" name="admitID" id="admitID9" class="text"></td>
+            <td><input type="text" name="phone" id="phone9" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail9" class="text"></td>
+            <td><input type="text" name="name" id="name9" class="text"></td>
+            <td><input type="text" name="password" id="password9" class="text"></td>
+            <td><input type="text" name="sex" id="sex9" class="text"></td>
+            <td><input type="text" name="rank" id="rank9" class="text"></td>
+            <td><input type="text" name="state" id="state9" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime9" class="text"></td>
+            <td><input type="submit" onclick="del('form9')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form9')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form10">
+        <tr id="tr10" style="display: none">
+            <td><input type="text" name="admitID" id="admitID10" class="text"></td>
+            <td><input type="text" name="phone" id="phone10" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail10" class="text"></td>
+            <td><input type="text" name="name" id="name10" class="text"></td>
+            <td><input type="text" name="password" id="password10" class="text"></td>
+            <td><input type="text" name="sex" id="sex10" class="text"></td>
+            <td><input type="text" name="rank" id="rank10" class="text"></td>
+            <td><input type="text" name="state" id="state10" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime10" class="text"></td>
+            <td><input type="submit" onclick="del('form10')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form10')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form11">
+        <tr id="tr11" style="display: none">
+            <td><input type="text" name="admitID" id="admitID11" class="text"></td>
+            <td><input type="text" name="phone" id="phone11" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail11" class="text"></td>
+            <td><input type="text" name="name" id="name11" class="text"></td>
+            <td><input type="text" name="password" id="password11" class="text"></td>
+            <td><input type="text" name="sex" id="sex11" class="text"></td>
+            <td><input type="text" name="rank" id="rank11" class="text"></td>
+            <td><input type="text" name="state" id="state11" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime11" class="text"></td>
+            <td><input type="submit" onclick="del('form11')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form11')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form12">
+        <tr id="tr12" style="display: none">
+            <td><input type="text" name="admitID" id="admitID12" class="text"></td>
+            <td><input type="text" name="phone" id="phone12" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail12" class="text"></td>
+            <td><input type="text" name="name" id="name12" class="text"></td>
+            <td><input type="text" name="password" id="password12" class="text"></td>
+            <td><input type="text" name="sex" id="sex12" class="text"></td>
+            <td><input type="text" name="rank" id="rank12" class="text"></td>
+            <td><input type="text" name="state" id="state12" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime12" class="text"></td>
+            <td><input type="submit" onclick="del('form12')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form12')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form13">
+        <tr id="tr13" style="display: none">
+            <td><input type="text" name="admitID" id="admitID13" class="text"></td>
+            <td><input type="text" name="phone" id="phone13" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail13" class="text"></td>
+            <td><input type="text" name="name" id="name13" class="text"></td>
+            <td><input type="text" name="password" id="password13" class="text"></td>
+            <td><input type="text" name="sex" id="sex13" class="text"></td>
+            <td><input type="text" name="rank" id="rank13" class="text"></td>
+            <td><input type="text" name="state" id="state13" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime13" class="text"></td>
+            <td><input type="submit" onclick="del('form13')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form13')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form14">
+        <tr id="tr14" style="display: none">
+            <td><input type="text" name="admitID" id="admitID14" class="text"></td>
+            <td><input type="text" name="phone" id="phone14" class="text"></td>
+            <td><input type="text" name="Mail" id="Mail14" class="text"></td>
+            <td><input type="text" name="name" id="name14" class="text"></td>
+            <td><input type="text" name="password" id="password14" class="text"></td>
+            <td><input type="text" name="sex" id="sex14" class="text"></td>
+            <td><input type="text" name="rank" id="rank14" class="text"></td>
+            <td><input type="text" name="state" id="state14" class="text"></td>
+            <td><input type="text" name="starttime" id="starttime14" class="text"></td>
+            <td><input type="submit" onclick="del('form14')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form14')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<form action="" enctype="application/x-www-form-urlencoded" method="post" align="center" style="padding-top: 15px">
+    <input type="button" class="cou" value="-" onclick="up()">
+    <input id="page0" style="width: 20px;height:20px;border:0.5px solid #cccccc; color:#000000;text-align:center;border-radius: 30px" value="1" type="text">
+    <input type="button" class="cou" value="+" onclick="next()">
+</form>
+<script>
+    window.onload = function () {
+        requestdata();
+    }
+    function del(id){
+        document.getElementById(id).action = url + deleteadmit
+    }
+    function req(id){
+        document.getElementById(id).action = url + resivateadmit
+    }
+    function up(){
+        var page0 = document.getElementById("page0").value;
+        --page0;
+        $.ajax({
+            //请求路径
+            url: admitLook,
+            //请求类型
+            type: "POST",
+            data:"{'page':'"+page0+"','pagesize':'15'}",//["page:"+1+"&pagesize:15"],
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                if(data[0].rank!=" "){
+                    document.getElementById("page0").value=page0;
+                    writ(data);
+                }
+            }
+        });
+    }
+    function next(){
+        var page0 = document.getElementById("page0").value;
+        $.ajax({
+            //请求路径
+            url: admitLook,
+            //请求类型
+            type: "POST",
+            data:"{'page':'"+(++page0)+"','pagesize':'15'}",//["page:"+1+"&pagesize:15"],
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                if(data[0].rank!=" "){
+                    writ(data)
+                    document.getElementById("page0").value=page0;
+                }
+            }
+        });
+    }
+    function requestdata(){
+        var page0 = 1;
+        document.getElementById("page0").value=1;
+        $.ajax({
+            //请求路径
+            url: admitLook,
+            //请求类型
+            type: "POST",
+            data:"{'page':'"+page0+"','pagesize':'15'}",//["page:"+1+"&pagesize:15"],
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                writ(data)
+            }
+        });
+    }
+    function writ(data){
+        var admitID = "admitID"
+        var phone = "phone"
+        var Mail = "Mail"
+        var name = "name"
+        var password = "password"
+        var sex = "sex"
+        var rank = "rank"
+        var state = "state"
+        var starttime = "starttime"
+        var endtime = "endtime"
+        var tr = "tr"
+        for(var i=0;i<data.length;i++){
+            document.getElementById(admitID+i).value = data[i].admitID;
+            document.getElementById(phone+i).value = data[i].phone;
+            document.getElementById(Mail+i).value = data[i].Mail;
+            document.getElementById(name+i).value = data[i].name;
+            document.getElementById(password+i).value = data[i].password;
+            document.getElementById(sex+i).value = data[i].sex;
+            document.getElementById(rank+i).value = data[i].rank;
+            document.getElementById(state+i).value = data[i].state;
+            document.getElementById(starttime+i).value = data[i].starttime;
+            //document.getElementById(endtime+i).value = data[i].endtime;
+            document.getElementById(tr+i).style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>

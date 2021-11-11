@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>无标题页</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <style type="text/css">
+        body{width: 100%;height: 100%;background: #ffffff}
+        *{margin: 0;padding: 0;}
+        .right{float: right;}
+        .right td{width:auto;height: auto;color:#f4f4f4;padding-top: 10px;padding-right: 30px}
+        .right li{padding-top: 0px;float: right;background: #f11d38;list-style: none;width: 15px;height: 15px;color: #050404;font-size: 6px;border-radius: 10px}
+        .right a{text-decoration: none;color: #525252}
+        .right a:hover{text-decoration:#333333 solid 1px; color: #30adfa}
+        *{FONT-SIZE: 12px; COLOR: white}
+        #logo A {COLOR: white}
+        FORM {MARGIN: 0px}
+        .left{padding:0px;margin:0px;width: 13%; height: 100%; background:#20242f;float: left;color: #f4f4f4;display: block;}
+        .empty{width: 87%;height: 100%;float: right;padding:0px;margin:0px;}
+        .footer{ width:100%; height:60px; line-height:60px; position:fixed; bottom:0; background:url(../imageFile/footerBg.png);background-color: transparent;}
+        .footer0{ width:100%; height:60px; margin:0 auto; font-size:14px; color:#adacac}
+        .footer_l{ float:left}
+        .footer_r{ float:right}
+        .buttonNone{border: none;background: none;color: black}
+        .buttonNone:hover{cursor: hand}
+        #headInformation table{display: none;position: fixed;top:50px;right: 10px;background: #f4f4f4;width: auto;height: auto;}
+        #headInformation:hover table{cursor: hand; display: block}
+        #headInformation:hover{cursor: hand;}
+        #admit span{color: #000000;font-size: 20px;font-family: 楷体_GB2312}
+        #admit td{margin-top: 20px;background:#ffffff}
+        #admit{border: #31acfb 2px solid;border-radius: 10px;}
+        #admit img{width: 20px;height: 20px;margin: 0px;padding: 0px}
+        #admit td:hover{background: #cccccc}
+        .right a:hover{cursor: hand}
+    </style>
+    <META content="MSHTML 6.00.2900.5848" name=GENERATOR>
+</HEAD>
+<BODY style="MARGIN: 0px;height: 100%;">
+    <div>
+        <div style="background: #283140;height: 60px">
+            <table cellSpacing=0 cellPadding=0 width="100%">
+                <tr>
+                    <td>
+                        <div>
+                            [系统管理员 ] 光临
+                        </div>
+                    </td>
+                    <td align=right width="70%">
+                        <table class="right">
+                            <tr align="center">
+                                <td><a onclick="setsrc('xiaoxi.html')">消息<li id="information">12</li></a></td>
+                                <td><a onclick="setsrc('xiaoxi.html')">公告<li id="gonggao">1</li></a></td>
+                                <td><a onclick="setsrc('xiaoxi.html')">待办<li id="daiban">1</li></a></td>
+                                <td id="headInformation">
+                                    <img src="../imageFile/headg.png" alt="" style="width: 30px;height: 30px;"><br>
+                                    <span id="admitname"></span>
+                                    <table id="admit">
+                                        <tr>
+                                            <td class="td1" onclick="setsrc('admitgo.html')">
+                                                <img src="../imageFile/headg.png">
+                                                <span>个人中心></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td1">
+                                                <img src="../imageFile/sheizhi.gif">
+                                                <span>设置></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="maven">
+            <div class="left" id="left">导航条部分</div>
+            <div class="empty" id="empty">
+                <li id="div00" style="position:fixed;list-style:none;top:60px; left: 13%;color: #5a5a5a;font-size: 25px">
+                    <input class="buttonNone" id="buttonNone" onclick="onl()" type="button" value="<<">
+                </li>
+                <iframe id="cue" src="" style="width: 100%;height: 100%;border: none"></iframe>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer0">
+                <div class="footer_l">使用条款 | 隐私保护</div>
+                <div class="footer_r">©杨鹏飞</div>
+            </div>
+        </div>
+    </div>
+    <img src="loading.gif" style="position: relative; top:45%;left: 45%;display:none" id="loading" >
+<script type="text/javascript" src="js/com.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    window.onload = function (){
+        var width = document.body.offsetWidth;
+        var height = document.body.offsetHeight;
+        document.getElementById("maven").style.width = width+16;
+        document.getElementById("maven").style.height = height-120;
+        $("#left").load("maue.html");
+        $.ajax({
+            url : getsession,//请求路径
+            type : "POST",//请求类型
+            data:"",//data表示发送的数据
+            contentType : "application/json;charset=utf-8",
+            dataType : "json",//定义回调响应的数据格式为JSON字符串，该属性可以省略
+            //成功响应的结果
+            success : function(data) {
+                if (data != null) {
+                    document.getElementById("admitname").innerText += "欢迎！"+data[0].name;
+                }
+            }
+        });
+        getInformation();
+    }
+    function getInformation(){
+        $.ajax({
+            //请求路径
+            url: information,
+            //请求类型
+            type: "POST",
+            data:"{'page':'1','pagesize':'15'}",//["page:"+1+"&pagesize:15"],
+            contentType: "application/json;charset=utf-8",
+            //定义回调响应的数据格式为JSON字符串，该属性可以省略
+            dataType: "json",
+            //成功响应的结果
+            success: function (data) {
+                writ(data)
+                setTimeout('getInformation()',1000)
+            }
+        });
+    }
+    function writ(data){
+        if(data[0].counts=="0"){
+            document.getElementById("information").style.display="none";
+        } else {
+            document.getElementById("information").innerText= data[0].counts;
+        }
+    }
+    function onl(){
+        var left = document.getElementById("left").style.display;
+        var bout = document.getElementById("buttonNone")
+        if(left=='block'|left==""){
+            document.getElementById("left").style.display = 'none';
+            document.getElementById("empty").style.width = "100%";
+            document.getElementById("div00").style.left = "0%";
+            bout.value = ">>";
+        }else {
+            document.getElementById("left").style.display = 'block';
+            document.getElementById("empty").style.width = "87%";
+            document.getElementById("div00").style.left = "13%";
+            bout.value = "<<";
+        }
+    }
+    function setsrc(url){
+        document.getElementById("loading").style.display = 'block';
+        document.getElementById("cue").src = url;
+        document.getElementById("loading").style.display = 'none';
+    }
+</script>
+</BODY>
+</HTML>

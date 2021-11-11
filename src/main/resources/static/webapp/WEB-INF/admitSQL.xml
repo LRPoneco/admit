@@ -1,0 +1,10 @@
+<SQL>
+    <!--学生登陆SQL方法-->
+    <StuLogin>select * from t_student where stupassword={stupassword} and stuno={stuno}</StuLogin>
+    <!--学生注册实现方法类-->
+    <StuRegister>insert into t_student(stuno, stupassword , stusex,  stuname) values({autoID$10} ,{stupassword} ,{stusex},{stuname})</StuRegister>
+    <!--学生修改密码-->
+    <StuResive>update t_student set stupassword={stupassword} where if( stuno!={stuno})='yes' and admitID={session$stuno}</StuResive>
+    <!--获取当前登陆学生的学号-->
+    <getSession>{session$stuno}</getSession>
+</SQL>

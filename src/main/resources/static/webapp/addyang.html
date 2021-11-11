@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>羊只添加</title>
+</head>
+<style>
+    .tableRank{border-collapse: collapse;}
+    .tableRank td{border: 0.5px solid #cccccc;align-self: center;width: 100px;height: 20px;}
+    .buttondel{width: 100px;height: 30px;background:#009fe9;border: none;}
+    .buttondel:hover{cursor:hand;background: #31acfb}
+    .buttondel1{width: 100px;height: 30px;background:none;border: none;}
+    .text{width: 200px;height: 30px;border: none;text-align: center}
+    .buttondel ,.buttondel1,.text{font-size: 20px;color: #cccccc}
+</style>
+<body>
+<table class="tableRank" align="center">
+        <tr>
+            <td><input value="职位" class="text"></td>
+            <td><input value="等级" class="text"></td>
+            <td><input type="submit" value="删除" class="buttondel1"></td>
+            <td><input type="submit" value="修改" class="buttondel1"></td>
+        </tr>
+</table>
+<table class="tableRank" align="center">
+    <form enctype="application/x-www-form-urlencoded" method="post" id="form0">
+        <tr id="tr0" style="display: none">
+            <td style="display:none"><input type="text" name="rankID" id="rankID0"></td>
+            <td><input type="text" name="rank" id="rank0" class="text"></td>
+            <td><input type="text" name="ranknumber" id="ranknumber0" class="text"></td>
+            <td><input type="submit" onclick="del('form0')" class="buttondel" value="删除"></td>
+            <td><input type="submit" onclick="req('form0')" class="buttondel" value="修改"></td>
+        </tr>
+    </form>
+</table>
+<script type="text/javascript" src="js/index.js"></script>
+<script>
+    function del(id){
+        document.getElementById(id).action = url + deleteRank
+    }
+    function req(id){
+        document.getElementById(id).action = url + resivateRank
+    }
+    window.onload = function (){
+        var data = [{"ranknumber":"7","rank":"UI"},{"ranknumber":"6","rank":"与"},{"ranknumber":"9","rank":"会长"},{"ranknumber":"6","rank":"会长66"},{"ranknumber":"0","rank":"保洁"},{"ranknumber":"5","rank":"经理"},{"ranknumber":"1","rank":"职员"},{"ranknumber":"0","rank":"药品"},{"ranknumber":"12","rank":"董事长"},{"ranknumber":"0","rank":"超级管理员"}]
+        writ(data);
+    }
+    function writ(data){
+        var rank = "rank"
+        var rankID = "rankID"
+        var ranknumber = "ranknumber"
+        var tr = "tr"
+        for(var i=0;i<3;i++){
+            document.getElementById(rank+i).value = data[i].rank;
+            document.getElementById(rankID+i).value = data[i].rank;
+            document.getElementById(ranknumber+i).value = data[i].ranknumber;
+            document.getElementById(tr+i).style.display = "block";
+        }
+    }
+</script>
+</body>
+</html>
